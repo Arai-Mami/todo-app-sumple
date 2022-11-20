@@ -1,0 +1,22 @@
+<header class ="header">
+    <h1 class="title">ＴＯＤＯリスト</h1>
+</header>
+<main class="main">
+    <ul class="list">
+        <% @tasks.each do |task| %>
+            <li class = "list-item">
+                <div class="list-item-wrap">
+                    <div class="text"><%= task.text %></div>
+                    <div class="btn"><%= link_to "完了", "tasks/#{task.id}", method: :delete, class: "done-btn" %></div>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+</main>
+
+<div class="form-area">
+<%= form_with url: "/tasks", method: :post, class: "form",local: true do |form| %>
+    <%= form.text_field :text, class: "input-text" %>
+    <%= form.submit "送信", class: "submit-btn"%>
+<% end %>
+</div>
